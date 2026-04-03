@@ -5,7 +5,7 @@
 
 ---
 
-## PART 1 — ALL NODES (Master + Worker 1 + Worker 2)
+## PART 1 — ALL NODES (Master + Worker Node 1 + Worker Node 2)
 
 > ⚠️ Run every command in this section on **all 3 nodes**
 
@@ -24,8 +24,6 @@ apt-get update && apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl gnupg wget
 ```
 
-📸 _Screenshot: [Add screenshot here]_
-
 ---
 
 ### Step 2: Disable Swap
@@ -39,8 +37,6 @@ apt-get install -y apt-transport-https ca-certificates curl gnupg wget
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -68,8 +64,6 @@ EOF
 sysctl --system
 ```
 
-📸 _Screenshot: [Add screenshot here]_
-
 ---
 
 ### Step 4: Install Docker
@@ -96,8 +90,7 @@ EOF
 systemctl daemon-reload
 systemctl restart docker
 ```
-
-📸 _Screenshot: [Add screenshot here]_
+<img width="684" height="878" alt="Screenshot 2026-04-03 at 7 27 46 PM" src="https://github.com/user-attachments/assets/900c90a8-5166-43af-a19f-847dff1a7d65" />
 
 ---
 
@@ -118,8 +111,8 @@ systemctl enable cri-docker.service
 systemctl enable cri-docker.socket
 systemctl start cri-docker.service
 ```
+<img width="1466" height="551" alt="Screenshot 2026-04-03 at 7 29 50 PM" src="https://github.com/user-attachments/assets/7cbe2ada-71bf-4d95-9622-9a23598db1f3" />
 
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -144,8 +137,7 @@ apt-mark hold kubelet kubeadm kubectl
 
 systemctl enable kubelet
 ```
-
-📸 _Screenshot: [Add screenshot here]_
+<img width="1166" height="867" alt="Screenshot 2026-04-03 at 7 31 02 PM" src="https://github.com/user-attachments/assets/6ce37648-9c17-4e4c-9f86-3589415de70f" />
 
 ---
 
@@ -161,7 +153,8 @@ systemctl status cri-docker.service
 systemctl status kubelet
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="658" height="835" alt="Screenshot 2026-04-03 at 7 32 05 PM" src="https://github.com/user-attachments/assets/14f98416-0477-486b-983d-210b74cde594" />
+
 
 ---
 
@@ -182,7 +175,9 @@ systemctl status kubelet
 kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --pod-network-cidr=192.168.0.0/16
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="1469" height="419" alt="Screenshot 2026-04-03 at 7 33 00 PM" src="https://github.com/user-attachments/assets/c49b0130-57fc-4da1-bd55-fba876c54dc5" />
+
+<img width="851" height="378" alt="Screenshot 2026-04-03 at 7 33 43 PM" src="https://github.com/user-attachments/assets/2e531660-b95a-45ed-9ac0-e929135cd745" />
 
 ---
 
@@ -198,7 +193,7 @@ cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="469" height="52" alt="Screenshot 2026-04-03 at 7 34 53 PM" src="https://github.com/user-attachments/assets/0dc249f7-8031-41a8-a424-8077a8f67ac5" />
 
 ---
 
@@ -213,7 +208,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.0/manifests/calico.yaml
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="955" height="514" alt="Screenshot 2026-04-03 at 7 35 28 PM" src="https://github.com/user-attachments/assets/8c6229f7-240e-4353-8a39-ff27c886e86b" />
 
 ---
 
@@ -232,7 +227,11 @@ kubeadm token create --print-join-command
 > kubeadm join 172.31.31.151:6443 --token xxxxx --discovery-token-ca-cert-hash sha256:xxxxx
 > ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="923" height="323" alt="Screenshot 2026-04-03 at 7 39 28 PM" src="https://github.com/user-attachments/assets/6ebde9d1-4643-4c92-b1f9-f6da648e8803" />
+
+
+<img width="1466" height="466" alt="Screenshot 2026-04-03 at 7 37 30 PM" src="https://github.com/user-attachments/assets/1f1c8ebb-9724-4c3e-83fd-2214d83137f2" />
+
 
 ---
 
@@ -255,7 +254,6 @@ kubeadm join <MASTER_IP>:6443 --token <token> \
   --cri-socket unix:///var/run/cri-dockerd.sock
 ```
 
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -281,7 +279,7 @@ worker-1    Ready    <none>          2m    v1.32.x
 worker-2    Ready    <none>          2m    v1.32.x
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="789" height="389" alt="Screenshot 2026-04-03 at 7 40 27 PM" src="https://github.com/user-attachments/assets/756f92bf-064e-43bb-a8f3-1d01986a33f5" />
 
 ---
 
@@ -290,8 +288,6 @@ worker-2    Ready    <none>          2m    v1.32.x
 ```bash
 kubectl get pods -n kube-system
 ```
-
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -309,7 +305,8 @@ kubectl get pods -n kube-system
 kubectl create deployment nginx --image=nginx
 ```
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="977" height="95" alt="Screenshot 2026-04-03 at 7 42 11 PM" src="https://github.com/user-attachments/assets/a51330bc-96a3-4ed9-917b-359d170a1112" />
+
 
 ---
 
@@ -323,7 +320,7 @@ kubectl get pods -o wide
 
 > `-o wide` shows which worker node the pod is running on
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="892" height="690" alt="Screenshot 2026-04-03 at 7 43 02 PM" src="https://github.com/user-attachments/assets/b9caeb8d-6cd6-4e15-87fb-c213c86db533" />
 
 ---
 
@@ -337,8 +334,8 @@ kubectl get pods -o wide
 ```bash
 kubectl expose deployment nginx --port=80 --type=NodePort
 ```
+<img width="761" height="45" alt="Screenshot 2026-04-03 at 7 43 33 PM" src="https://github.com/user-attachments/assets/d7827983-7563-4844-ac68-1433939dbd55" />
 
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -356,7 +353,8 @@ nginx   NodePort   10.96.xxx.xxx   80:32456/TCP   10s
 
 > Note the port after `80:` — e.g. `32456`. Use this to access the app.
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="642" height="83" alt="Screenshot 2026-04-03 at 7 44 10 PM" src="https://github.com/user-attachments/assets/61fa3aef-8f11-45e9-89a5-d54559249ab8" />
+
 
 ---
 
@@ -373,7 +371,10 @@ http://3.109.xx.xx:32456
 
 > You should see the **"Welcome to nginx!"** page
 
-📸 _Screenshot: [Add screenshot here]_
+<img width="1457" height="565" alt="Screenshot 2026-04-03 at 6 07 39 PM" src="https://github.com/user-attachments/assets/cbc2ea5e-89d4-4f83-8c5f-70c1002e0f0a" />
+
+<img width="1457" height="545" alt="Screenshot 2026-04-03 at 6 08 05 PM" src="https://github.com/user-attachments/assets/0e3b7354-d5cf-4a8b-8b9c-83c1c7b60a5c" />
+
 
 ---
 
@@ -390,8 +391,6 @@ kubectl scale deployment nginx --replicas=3
 # Check pods spread across workers
 kubectl get pods -o wide
 ```
-
-📸 _Screenshot: [Add screenshot here]_
 
 ---
 
@@ -418,3 +417,9 @@ kubectl get pods -o wide
 | 2379-2380 | TCP | etcd (master only) |
 | 30000-32767 | TCP | NodePort services (worker nodes) |
 | All traffic | All | Within cluster private subnet |
+
+
+## 👨‍💻 Author
+
+**Pravesh Kumar**
+📬 [LinkedIn](https://www.linkedin.com/in/pravesh22) · [GitHub](https://github.com/pravesh2201)
