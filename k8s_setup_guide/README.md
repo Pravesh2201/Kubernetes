@@ -116,12 +116,6 @@ If you want to replicate this setup, follow the detailed guide:
 
 ---
 
-## 📸 Screenshots
-
-> Screenshots of each step are included in the setup guide.
-
----
-
 ## ⚠️ Prerequisites
 
 - AWS account with EC2 access
@@ -133,4 +127,5 @@ If you want to replicate this setup, follow the detailed guide:
 
 ## 👨‍💻 Author
 
-> Setup performed and documented as part of learning Kubernetes on AWS.
+**Pravesh Kumar**
+📬 [LinkedIn](https://www.linkedin.com/in/pravesh22) · [GitHub](https://github.com/pravesh2201)
